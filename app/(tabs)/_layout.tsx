@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import Octicons from '@expo/vector-icons/Octicons';
+import Feather from '@expo/vector-icons/Feather';
 
 
 
@@ -18,6 +19,20 @@ export default function TabLayout() {
           ), tabBarLabelStyle: { color: 'white' },
             headerStyle: { backgroundColor: 'black' },
           headerTintColor: 'white'
+         
+        }} 
+        
+      />
+        <Tabs.Screen 
+        name="profile" 
+        options={{ 
+          title: "Profile", tabBarStyle:{backgroundColor:'black'},
+          tabBarIcon: ({ size}) => ( 
+            <Feather name="user" size={size} color="white"/>
+          ), tabBarLabelStyle: { color: 'white' },
+            headerStyle: { backgroundColor: 'black' },
+          headerTintColor: 'white',
+          
         }} 
         
       />
