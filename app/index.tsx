@@ -8,26 +8,31 @@ import axios from 'axios'
 import {jwtDecode} from 'jwt-decode'
 
 const index = () => {
-  const [inputUser, setInputUser] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
-  const { login } = useContext(AuthContext);
-  const router = useRouter();
-
-  function loginUser() {
-      axios.post("http://192.168.1.144:8080/api/v1/auth/user/login", {
-          username: inputUser,
-          password: inputPassword
-      }).then((result) => {
-          const token = result.data;
-          const user = jwtDecode(token);
-          login(token, user);
-          router.replace("/(tabs)/home");
-          alert("Login successful");
-      }).catch(() => {
-          alert("Username or password is incorrect");
-      });
-  }
-
+    const [inputUser, setInputUser] = useState<string>("");
+    const [inputPassword, setInputPassword] = useState<string>("");
+    const { login } = useContext(AuthContext);
+    const router = useRouter();
+  
+    const loginUser = async (): Promise<void> => {
+      try {
+        const response = await axios.post<string>(
+          "http://192.168.1.144:8080/api/v1/auth/user/login",
+          {
+            username: inputUser,
+            password: inputPassword,
+          }
+        );
+  
+        const token: string = response.data;
+        const user: UserToken = jwtDecode<UserToken>(token);
+        login(token, user);
+        console.log(user);
+        router.replace("/(tabs)/home");
+        alert("Login successful");
+      } catch (error) {
+        alert("Username or password is incorrect");
+      }
+    };
   return (
     <View>
     <View className='flex justify-center items-center top-32'>
