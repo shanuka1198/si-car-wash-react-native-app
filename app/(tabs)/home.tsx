@@ -2,6 +2,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity, ImageBackground } from
 import React from 'react';
 import { useFonts } from 'expo-font';
 import SwiperComponent from '@/component/SwiperComponent';
+import PartnersSwiper from '@/component/PartnerSwiper';
 
 const Home = () => {
 
@@ -66,6 +67,9 @@ const Home = () => {
 
     <View className="p-10">
       <SwiperComponent/>
+    </View>
+    <View className="p-10">
+      <PartnersSwiper/>
     </View>
   </ScrollView>
   
